@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherVC: UIViewController {
+class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Current Date Weather Outlets
     @IBOutlet weak var dateLabel: UILabel!
@@ -20,10 +20,25 @@ class WeatherVC: UIViewController {
     // Table View Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    //View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    // UITableView Delegate Methods
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
+    
+        return cell
+    }
 }
-
