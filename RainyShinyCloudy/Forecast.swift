@@ -13,8 +13,8 @@ class Forecast {
     
     var _date: String!
     var _weatherType: String!
-    var _highTemp: String!
-    var _lowTemp: String!
+    var _highTemp: Double!
+    var _lowTemp: Double!
     
     var date: String {
         if _date == nil {
@@ -30,16 +30,16 @@ class Forecast {
         return _weatherType
     }
     
-    var highTemp: String {
+    var highTemp: Double {
         if _highTemp == nil {
-            _highTemp = ""
+            _highTemp = 0.0
         }
         return _highTemp
     }
     
-    var lowTemp: String {
+    var lowTemp: Double {
         if _lowTemp == nil {
-            _lowTemp = ""
+            _lowTemp = 0.0
         }
         return _lowTemp
     }
@@ -53,7 +53,7 @@ class Forecast {
                 
                 let kelventoF = Double(round(10 * kelventoFarenheitPreDivision/10))
                 
-                self._lowTemp = "\(kelventoF)"
+                self._lowTemp = kelventoF
             }
             
             if let max = temp["max"] as? Double {
@@ -61,7 +61,7 @@ class Forecast {
                 
                 let kelventoF = Double(round(10 * kelventoFarenheitPreDivision/10))
                 
-                self._highTemp = "\(kelventoF)"
+                self._highTemp = kelventoF
             }
         }
         
